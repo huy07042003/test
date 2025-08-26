@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const User = require("./models/userModel");
@@ -13,15 +12,19 @@ app.use(cors());
 app.use(express.json());
 
 //Connect to db
-const url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster.wx5rnmg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster`;
+const url = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster.wx5rnmg.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority&tls=true`;
 
 //db
-mongoose.connect(url).then(() => {
-  console.log("Connected to db succesfully");
-  app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
+mongoose
+  .connect(url, {
+    tlsAllowInvalidCertificates: false,
+  })
+  .then(() => {
+    console.log("Connected to db succesfully");
+    app.listen(PORT, () => {
+      console.log(`http://localhost:${PORT}`);
+    });
   });
-});
 
 // Routes
 app.get("/", async (req, res) => {
