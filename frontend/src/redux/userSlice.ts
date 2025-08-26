@@ -13,7 +13,7 @@ const userSlicer = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUsers: (state, action: PayloadAction<User[]>) => {
+    setUsers: (_state, action: PayloadAction<User[]>) => {
       return action.payload; // Ghi đè toàn bộ danh sách
     },
     create: (state, action: PayloadAction<User>) => {
