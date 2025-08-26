@@ -22,7 +22,7 @@ mongoose
   .then(() => {
     console.log("Connected to db succesfully");
     app.listen(PORT, () => {
-      console.log(`http://localhost:${PORT}`);
+      console.log(`https://test-1-9las.onrender.com`);
     });
   });
 

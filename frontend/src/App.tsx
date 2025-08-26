@@ -20,7 +20,7 @@ function App() {
     e.preventDefault();
     if (!name || !age || !des) return alert("Please fill all fields");
     try {
-      const res = await axios.post("http://localhost:8000/", updateValue);
+      const res = await axios.post("https://test-1-9las.onrender.com", updateValue);
       dispatch(create(res.data)); // Lưu vào Redux
       setName("");
       setAge("");
@@ -31,7 +31,7 @@ function App() {
   };
   //fetch data
   useEffect(() => {
-    axios.get("http://localhost:8000/").then((res) => {
+    axios.get("https://test-1-9las.onrender.com").then((res) => {
       // Nếu muốn lưu vào Redux:
       dispatch(setUsers(res.data))
     });
